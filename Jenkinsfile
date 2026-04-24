@@ -1,21 +1,19 @@
-flag=true
-
 pipeline {
     agent any
+
+    environment {
+        // Accessible by all stages
+        NEW_VERSION = '1.3.0'
+    }
+
     stages {
         stage('Build') {
-            steps { echo 'Building Project' }
-        }
-        stage('Test') {
-            when {
-                expression {
-                    flag == false   // change to true to run test
-                }
+            steps {
+                echo 'Building Project'
+                // Use " " (double quotes) to interpolate variables
+                echo "Building version ${NEW_VERSION}"
             }
-            steps { echo 'Testing Project' }
         }
-        stage('Deploy') {
-            steps { echo 'Deploying Project' }
-        }
+        // ...other stages
     }
 }
