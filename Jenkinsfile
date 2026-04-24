@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'   // must match name in Manage Jenkins → Tools
+        maven 'Maven3'   // must match name in Manage Jenkins → Tools
     }
 
     environment {
@@ -12,11 +12,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building version ${NEW_VERSION}"
-                // Linux / macOS:
-                sh "mvn --version"
+            
                 // Windows — use bat instead of sh:
-                // bat 'mvn --version'
+                bat 'mvn -v'
             }
         }
         // ...other stages
