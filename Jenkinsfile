@@ -21,4 +21,20 @@ pipeline {
             }
         }
     }
+    post {
+    // Runs regardless of build result
+    always {
+        echo 'Post build condition running'
+    }
+    // Runs only if build failed
+    failure {
+        echo 'Post Action if Build Failed'
+    }
 }
+}
+
+
+
+
+
+
