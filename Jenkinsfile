@@ -1,3 +1,25 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven3'   // must match name in Manage Jenkins → Tools
+    }
+
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building version ${NEW_VERSION}"
+                // Linux / macOS:
+                bat "mvn -v"
+                // Windows — use bat instead of sh:
+                // bat 'mvn --version'
+            }
+        }
+        // ...other stages
+    }
+}
+
 parameters {
     // Free-text input
     string(
